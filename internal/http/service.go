@@ -17,11 +17,7 @@ func NewHTTPService(service types.MathService) *HTTPService {
 	}
 }
 
-type UnaryRequest struct {
-	Number float64 `json:"number" validate:"required"`
-}
-
-type BinaryRequest struct {
+type OperationRequest struct {
 	FirstNumber  float64 `json:"first_number" validate:"required"`
 	SecondNumber float64 `json:"second_number" validate:"required"`
 }
@@ -30,52 +26,52 @@ type OperationResponse struct {
 	Result float64 `json:"result" validate:"required"`
 }
 
-func (s *HTTPService) Sqrt(w http.ResponseWriter, r *http.Request) {
+func (s *HTTPService) RootMeanSquare(w http.ResponseWriter, r *http.Request) {
 	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[UnaryRequest](w, r)
+	body, err := util.GetRequestBody[OperationRequest](w, r)
 	if err != nil {
 		return
 	}
-	result := s.service.Sqrt(body.Number)
+	result := s.service.RootMeanSquare(body.FirstNumber, body.SecondNumber)
 	util.WriteResponse(w, OperationResponse{Result: result})
 }
 
-func (s *HTTPService) Abs(w http.ResponseWriter, r *http.Request) {
+func (s *HTTPService) GeometricMean(w http.ResponseWriter, r *http.Request) {
 	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[UnaryRequest](w, r)
+	body, err := util.GetRequestBody[OperationRequest](w, r)
 	if err != nil {
 		return
 	}
-	result := s.service.Abs(body.Number)
+	result := s.service.GeometricMean(body.FirstNumber, body.SecondNumber)
 	util.WriteResponse(w, OperationResponse{Result: result})
 }
 
-func (s *HTTPService) Power(w http.ResponseWriter, r *http.Request) {
+func (s *HTTPService) BodyMassIndex(w http.ResponseWriter, r *http.Request) {
 	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[BinaryRequest](w, r)
+	body, err := util.GetRequestBody[OperationRequest](w, r)
 	if err != nil {
 		return
 	}
-	result := s.service.Power(body.FirstNumber, body.SecondNumber)
+	result := s.service.BodyMassIndex(body.FirstNumber, body.SecondNumber)
 	util.WriteResponse(w, OperationResponse{Result: result})
 }
 
-func (s *HTTPService) Log(w http.ResponseWriter, r *http.Request) {
+func (s *HTTPService) PowerLevelDiff(w http.ResponseWriter, r *http.Request) {
 	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[BinaryRequest](w, r)
+	body, err := util.GetRequestBody[OperationRequest](w, r)
 	if err != nil {
 		return
 	}
-	result := s.service.Log(body.FirstNumber, body.SecondNumber)
+	result := s.service.PowerLevelDiff(body.FirstNumber, body.SecondNumber)
 	util.WriteResponse(w, OperationResponse{Result: result})
 }
 
-func (s *HTTPService) Round(w http.ResponseWriter, r *http.Request) {
+func (s *HTTPService) PercentageValueChange(w http.ResponseWriter, r *http.Request) {
 	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[BinaryRequest](w, r)
+	body, err := util.GetRequestBody[OperationRequest](w, r)
 	if err != nil {
 		return
 	}
-	result := s.service.Round(body.FirstNumber, int64(body.SecondNumber))
+	result := s.service.PercentageValueChange(body.FirstNumber, body.SecondNumber)
 	util.WriteResponse(w, OperationResponse{Result: result})
 }

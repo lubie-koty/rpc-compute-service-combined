@@ -18,7 +18,7 @@ type App struct {
 func NewApp(ctx *context.Context, logger *slog.Logger, address string) *App {
 	var server types.Server
 	appMode := config.AppConfig.AppMode
-	baseService := base.NewComplexMathService()
+	baseService := base.NewCombinedMathService()
 	switch appMode {
 	case "grpc":
 		server = grpc.NewGRPCServer(ctx, logger, grpc.NewGRPCService(baseService), address)

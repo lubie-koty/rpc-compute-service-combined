@@ -1,30 +1,32 @@
 package base
 
-import "math"
+type CombinedMathService struct{}
 
-type ComplexMathService struct{}
-
-func NewComplexMathService() *ComplexMathService {
-	return &ComplexMathService{}
+func NewCombinedMathService() *CombinedMathService {
+	return &CombinedMathService{}
 }
 
-func (s *ComplexMathService) Sqrt(num float64) float64 {
-	return math.Sqrt(num)
+func (s *CombinedMathService) RootMeanSquare(firstValue float64, secondValue float64) float64 {
+	// TODO
+	return 0
 }
 
-func (s *ComplexMathService) Abs(num float64) float64 {
-	return math.Abs(num)
+func (s *CombinedMathService) GeometricMean(firstValue float64, secondValue float64) float64 {
+	// TODO
+	return 0
 }
 
-func (s *ComplexMathService) Power(base float64, exponent float64) float64 {
-	return math.Pow(base, exponent)
+func (s *CombinedMathService) BodyMassIndex(firstValue float64, secondValue float64) float64 {
+	// TODO
+	return 0
 }
 
-func (s *ComplexMathService) Log(num float64, base float64) float64 {
-	return math.Log(num) / math.Log(base)
+func (s *CombinedMathService) PowerLevelDiff(firstValue float64, secondValue float64) float64 {
+	// TODO
+	return 0
 }
 
-func (s *ComplexMathService) Round(num float64, precision int64) float64 {
-	ratio := math.Pow(10, float64(precision))
-	return math.Round(num*ratio) / ratio
+func (s *CombinedMathService) PercentageValueChange(firstValue float64, secondValue float64) float64 {
+	// TODO
+	return 0
 }

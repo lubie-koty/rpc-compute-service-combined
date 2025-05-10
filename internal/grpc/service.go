@@ -5,12 +5,10 @@ import (
 
 	"github.com/lubie-koty/rpc-compute-service-combined/internal/core/types"
 	pb "github.com/lubie-koty/rpc-compute-service-combined/protos"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 type GRPCService struct {
-	pb.UnimplementedComplexComputeServer
+	pb.UnimplementedCombinedComputeServer
 	service types.MathService
 }
 
@@ -20,22 +18,27 @@ func NewGRPCService(service types.MathService) *GRPCService {
 	}
 }
 
-func (s *GRPCService) Sqrt(ctx context.Context, req *pb.UnaryRequest) (*pb.OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Sqrt not implemented")
+func (s *GRPCService) RootMeanSquare(ctx context.Context, req *pb.OperationRequest) (*pb.OperationResponse, error) {
+	result := s.service.RootMeanSquare(req.GetFirstNumber(), req.GetSecondNumber())
+	return &pb.OperationResponse{Result: result}, nil
 }
 
-func (s *GRPCService) Abs(ctx context.Context, req *pb.UnaryRequest) (*pb.OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Abs not implemented")
+func (s *GRPCService) GeometricMean(ctx context.Context, req *pb.OperationRequest) (*pb.OperationResponse, error) {
+	result := s.service.GeometricMean(req.GetFirstNumber(), req.GetSecondNumber())
+	return &pb.OperationResponse{Result: result}, nil
 }
 
-func (s *GRPCService) Power(ctx context.Context, req *pb.BinaryRequest) (*pb.OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Power not implemented")
+func (s *GRPCService) BodyMassIndex(ctx context.Context, req *pb.OperationRequest) (*pb.OperationResponse, error) {
+	result := s.service.BodyMassIndex(req.GetFirstNumber(), req.GetSecondNumber())
+	return &pb.OperationResponse{Result: result}, nil
 }
 
-func (s *GRPCService) Log(ctx context.Context, req *pb.BinaryRequest) (*pb.OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Log not implemented")
+func (s *GRPCService) PowerLevelDiff(ctx context.Context, req *pb.OperationRequest) (*pb.OperationResponse, error) {
+	result := s.service.PowerLevelDiff(req.GetFirstNumber(), req.GetSecondNumber())
+	return &pb.OperationResponse{Result: result}, nil
 }
 
-func (s *GRPCService) Round(ctx context.Context, req *pb.BinaryRequest) (*pb.OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Round not implemented")
+func (s *GRPCService) PercentageValueChange(ctx context.Context, req *pb.OperationRequest) (*pb.OperationResponse, error) {
+	result := s.service.PercentageValueChange(req.GetFirstNumber(), req.GetSecondNumber())
+	return &pb.OperationResponse{Result: result}, nil
 }
