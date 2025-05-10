@@ -4,7 +4,7 @@
 // 	protoc        v6.30.1
 // source: protos/simple/service-simple.proto
 
-package protos
+package simple
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -121,17 +121,17 @@ var File_protos_simple_service_simple_proto protoreflect.FileDescriptor
 
 const file_protos_simple_service_simple_proto_rawDesc = "" +
 	"\n" +
-	"\"protos/simple/service-simple.proto\"Z\n" +
+	"\"protos/simple/service-simple.proto\x12\x06simple\"Z\n" +
 	"\x10OperationRequest\x12!\n" +
 	"\ffirst_number\x18\x01 \x01(\x01R\vfirstNumber\x12#\n" +
 	"\rsecond_number\x18\x02 \x01(\x01R\fsecondNumber\"+\n" +
 	"\x11OperationResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\x01R\x06result2\xcf\x01\n" +
-	"\rSimpleCompute\x12.\n" +
-	"\x03Add\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00\x12.\n" +
-	"\x03Sub\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00\x12.\n" +
-	"\x03Mul\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00\x12.\n" +
-	"\x03Div\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00B;Z9github.com/lubie-koty/rpc-compute-service-combined/protosb\x06proto3"
+	"\x06result\x18\x01 \x01(\x01R\x06result2\x87\x02\n" +
+	"\rSimpleCompute\x12<\n" +
+	"\x03Add\x12\x18.simple.OperationRequest\x1a\x19.simple.OperationResponse\"\x00\x12<\n" +
+	"\x03Sub\x12\x18.simple.OperationRequest\x1a\x19.simple.OperationResponse\"\x00\x12<\n" +
+	"\x03Mul\x12\x18.simple.OperationRequest\x1a\x19.simple.OperationResponse\"\x00\x12<\n" +
+	"\x03Div\x12\x18.simple.OperationRequest\x1a\x19.simple.OperationResponse\"\x00BBZ@github.com/lubie-koty/rpc-compute-service-combined/protos/simpleb\x06proto3"
 
 var (
 	file_protos_simple_service_simple_proto_rawDescOnce sync.Once
@@ -147,18 +147,18 @@ func file_protos_simple_service_simple_proto_rawDescGZIP() []byte {
 
 var file_protos_simple_service_simple_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_protos_simple_service_simple_proto_goTypes = []any{
-	(*OperationRequest)(nil),  // 0: OperationRequest
-	(*OperationResponse)(nil), // 1: OperationResponse
+	(*OperationRequest)(nil),  // 0: simple.OperationRequest
+	(*OperationResponse)(nil), // 1: simple.OperationResponse
 }
 var file_protos_simple_service_simple_proto_depIdxs = []int32{
-	0, // 0: SimpleCompute.Add:input_type -> OperationRequest
-	0, // 1: SimpleCompute.Sub:input_type -> OperationRequest
-	0, // 2: SimpleCompute.Mul:input_type -> OperationRequest
-	0, // 3: SimpleCompute.Div:input_type -> OperationRequest
-	1, // 4: SimpleCompute.Add:output_type -> OperationResponse
-	1, // 5: SimpleCompute.Sub:output_type -> OperationResponse
-	1, // 6: SimpleCompute.Mul:output_type -> OperationResponse
-	1, // 7: SimpleCompute.Div:output_type -> OperationResponse
+	0, // 0: simple.SimpleCompute.Add:input_type -> simple.OperationRequest
+	0, // 1: simple.SimpleCompute.Sub:input_type -> simple.OperationRequest
+	0, // 2: simple.SimpleCompute.Mul:input_type -> simple.OperationRequest
+	0, // 3: simple.SimpleCompute.Div:input_type -> simple.OperationRequest
+	1, // 4: simple.SimpleCompute.Add:output_type -> simple.OperationResponse
+	1, // 5: simple.SimpleCompute.Sub:output_type -> simple.OperationResponse
+	1, // 6: simple.SimpleCompute.Mul:output_type -> simple.OperationResponse
+	1, // 7: simple.SimpleCompute.Div:output_type -> simple.OperationResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

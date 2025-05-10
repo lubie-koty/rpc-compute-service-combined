@@ -4,7 +4,7 @@
 // - protoc             v6.30.1
 // source: protos/complex/service-complex.proto
 
-package protos
+package complex
 
 import (
 	context "context"
@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ComplexCompute_Sqrt_FullMethodName  = "/ComplexCompute/Sqrt"
-	ComplexCompute_Abs_FullMethodName   = "/ComplexCompute/Abs"
-	ComplexCompute_Power_FullMethodName = "/ComplexCompute/Power"
-	ComplexCompute_Log_FullMethodName   = "/ComplexCompute/Log"
-	ComplexCompute_Round_FullMethodName = "/ComplexCompute/Round"
+	ComplexCompute_Sqrt_FullMethodName  = "/complex.ComplexCompute/Sqrt"
+	ComplexCompute_Abs_FullMethodName   = "/complex.ComplexCompute/Abs"
+	ComplexCompute_Power_FullMethodName = "/complex.ComplexCompute/Power"
+	ComplexCompute_Log_FullMethodName   = "/complex.ComplexCompute/Log"
+	ComplexCompute_Round_FullMethodName = "/complex.ComplexCompute/Round"
 )
 
 // ComplexComputeClient is the client API for ComplexCompute service.
@@ -244,7 +244,7 @@ func _ComplexCompute_Round_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ComplexCompute_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "ComplexCompute",
+	ServiceName: "complex.ComplexCompute",
 	HandlerType: (*ComplexComputeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

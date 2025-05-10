@@ -1,6 +1,6 @@
 syntax = "proto3";
-
-option go_package = "github.com/lubie-koty/rpc-compute-service-combined/protos";
+package complex;
+option go_package = "github.com/lubie-koty/rpc-compute-service-combined/protos/complex";
 
 service ComplexCompute {
   rpc Sqrt (UnaryRequest) returns (OperationResponse) {}

@@ -4,7 +4,7 @@
 // 	protoc        v6.30.1
 // source: protos/complex/service-complex.proto
 
-package protos
+package complex
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -165,20 +165,20 @@ var File_protos_complex_service_complex_proto protoreflect.FileDescriptor
 
 const file_protos_complex_service_complex_proto_rawDesc = "" +
 	"\n" +
-	"$protos/complex/service-complex.proto\"&\n" +
+	"$protos/complex/service-complex.proto\x12\acomplex\"&\n" +
 	"\fUnaryRequest\x12\x16\n" +
 	"\x06number\x18\x01 \x01(\x01R\x06number\"W\n" +
 	"\rBinaryRequest\x12!\n" +
 	"\ffirst_number\x18\x01 \x01(\x01R\vfirstNumber\x12#\n" +
 	"\rsecond_number\x18\x02 \x01(\x01R\fsecondNumber\"+\n" +
 	"\x11OperationResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\x01R\x06result2\xf4\x01\n" +
-	"\x0eComplexCompute\x12+\n" +
-	"\x04Sqrt\x12\r.UnaryRequest\x1a\x12.OperationResponse\"\x00\x12*\n" +
-	"\x03Abs\x12\r.UnaryRequest\x1a\x12.OperationResponse\"\x00\x12-\n" +
-	"\x05Power\x12\x0e.BinaryRequest\x1a\x12.OperationResponse\"\x00\x12+\n" +
-	"\x03Log\x12\x0e.BinaryRequest\x1a\x12.OperationResponse\"\x00\x12-\n" +
-	"\x05Round\x12\x0e.BinaryRequest\x1a\x12.OperationResponse\"\x00B;Z9github.com/lubie-koty/rpc-compute-service-combined/protosb\x06proto3"
+	"\x06result\x18\x01 \x01(\x01R\x06result2\xc4\x02\n" +
+	"\x0eComplexCompute\x12;\n" +
+	"\x04Sqrt\x12\x15.complex.UnaryRequest\x1a\x1a.complex.OperationResponse\"\x00\x12:\n" +
+	"\x03Abs\x12\x15.complex.UnaryRequest\x1a\x1a.complex.OperationResponse\"\x00\x12=\n" +
+	"\x05Power\x12\x16.complex.BinaryRequest\x1a\x1a.complex.OperationResponse\"\x00\x12;\n" +
+	"\x03Log\x12\x16.complex.BinaryRequest\x1a\x1a.complex.OperationResponse\"\x00\x12=\n" +
+	"\x05Round\x12\x16.complex.BinaryRequest\x1a\x1a.complex.OperationResponse\"\x00BCZAgithub.com/lubie-koty/rpc-compute-service-combined/protos/complexb\x06proto3"
 
 var (
 	file_protos_complex_service_complex_proto_rawDescOnce sync.Once
@@ -194,21 +194,21 @@ func file_protos_complex_service_complex_proto_rawDescGZIP() []byte {
 
 var file_protos_complex_service_complex_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_protos_complex_service_complex_proto_goTypes = []any{
-	(*UnaryRequest)(nil),      // 0: UnaryRequest
-	(*BinaryRequest)(nil),     // 1: BinaryRequest
-	(*OperationResponse)(nil), // 2: OperationResponse
+	(*UnaryRequest)(nil),      // 0: complex.UnaryRequest
+	(*BinaryRequest)(nil),     // 1: complex.BinaryRequest
+	(*OperationResponse)(nil), // 2: complex.OperationResponse
 }
 var file_protos_complex_service_complex_proto_depIdxs = []int32{
-	0, // 0: ComplexCompute.Sqrt:input_type -> UnaryRequest
-	0, // 1: ComplexCompute.Abs:input_type -> UnaryRequest
-	1, // 2: ComplexCompute.Power:input_type -> BinaryRequest
-	1, // 3: ComplexCompute.Log:input_type -> BinaryRequest
-	1, // 4: ComplexCompute.Round:input_type -> BinaryRequest
-	2, // 5: ComplexCompute.Sqrt:output_type -> OperationResponse
-	2, // 6: ComplexCompute.Abs:output_type -> OperationResponse
-	2, // 7: ComplexCompute.Power:output_type -> OperationResponse
-	2, // 8: ComplexCompute.Log:output_type -> OperationResponse
-	2, // 9: ComplexCompute.Round:output_type -> OperationResponse
+	0, // 0: complex.ComplexCompute.Sqrt:input_type -> complex.UnaryRequest
+	0, // 1: complex.ComplexCompute.Abs:input_type -> complex.UnaryRequest
+	1, // 2: complex.ComplexCompute.Power:input_type -> complex.BinaryRequest
+	1, // 3: complex.ComplexCompute.Log:input_type -> complex.BinaryRequest
+	1, // 4: complex.ComplexCompute.Round:input_type -> complex.BinaryRequest
+	2, // 5: complex.ComplexCompute.Sqrt:output_type -> complex.OperationResponse
+	2, // 6: complex.ComplexCompute.Abs:output_type -> complex.OperationResponse
+	2, // 7: complex.ComplexCompute.Power:output_type -> complex.OperationResponse
+	2, // 8: complex.ComplexCompute.Log:output_type -> complex.OperationResponse
+	2, // 9: complex.ComplexCompute.Round:output_type -> complex.OperationResponse
 	5, // [5:10] is the sub-list for method output_type
 	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

@@ -5,6 +5,7 @@ import (
 	"log/slog"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 
 	pbComplex "github.com/lubie-koty/rpc-compute-service-combined/protos/complex"
 	pbSimple "github.com/lubie-koty/rpc-compute-service-combined/protos/simple"
@@ -22,32 +23,30 @@ type GRPCComplexServiceClient struct {
 	client pbComplex.ComplexComputeClient
 }
 
-func NewGRPCSimpleServiceClient(ctx context.Context, logger *slog.Logger, address string) *GRPCSimpleServiceClient {
-	conn, err := grpc.NewClient(address)
+func NewGRPCSimpleServiceClient(ctx context.Context, logger *slog.Logger, address string) (*GRPCSimpleServiceClient, *grpc.ClientConn) {
+	conn, err := grpc.NewClient(address, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		panic(err)
 	}
-	defer conn.Close()
 	client := pbSimple.NewSimpleComputeClient(conn)
 	return &GRPCSimpleServiceClient{
 		ctx:    ctx,
 		logger: logger,
 		client: client,
-	}
+	}, conn
 }
 
-func NewGRPCComplexServiceClient(ctx context.Context, logger *slog.Logger, address string) *GRPCComplexServiceClient {
-	conn, err := grpc.NewClient(address)
+func NewGRPCComplexServiceClient(ctx context.Context, logger *slog.Logger, address string) (*GRPCComplexServiceClient, *grpc.ClientConn) {
+	conn, err := grpc.NewClient(address, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		panic(err)
 	}
-	defer conn.Close()
 	client := pbComplex.NewComplexComputeClient(conn)
 	return &GRPCComplexServiceClient{
 		ctx:    ctx,
 		logger: logger,
 		client: client,
-	}
+	}, conn
 
 }
 

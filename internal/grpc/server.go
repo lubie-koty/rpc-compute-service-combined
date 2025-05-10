@@ -11,18 +11,20 @@ import (
 )
 
 type GRPCServer struct {
-	Address string
-	Logger  *slog.Logger
-	Service *GRPCService
-	Context *context.Context
+	Address           string
+	Logger            *slog.Logger
+	Service           *GRPCService
+	Context           *context.Context
+	ClientConnections []*grpc.ClientConn
 }
 
-func NewGRPCServer(ctx *context.Context, logger *slog.Logger, service *GRPCService, address string) *GRPCServer {
+func NewGRPCServer(ctx *context.Context, logger *slog.Logger, service *GRPCService, address string, connections []*grpc.ClientConn) *GRPCServer {
 	return &GRPCServer{
-		Address: address,
-		Logger:  logger,
-		Service: service,
-		Context: ctx,
+		Address:           address,
+		Logger:            logger,
+		Service:           service,
+		Context:           ctx,
+		ClientConnections: connections,
 	}
 }
 
@@ -42,6 +44,9 @@ func (s *GRPCServer) Serve() error {
 	g.Go(func() error {
 		<-gCtx.Done()
 		s.Logger.Info("gRPC server stopped")
+		for _, conn := range s.ClientConnections {
+			conn.Close()
+		}
 		server.GracefulStop()
 		return nil
 	})

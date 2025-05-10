@@ -4,7 +4,7 @@
 // - protoc             v6.30.1
 // source: protos/simple/service-simple.proto
 
-package protos
+package simple
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SimpleCompute_Add_FullMethodName = "/SimpleCompute/Add"
-	SimpleCompute_Sub_FullMethodName = "/SimpleCompute/Sub"
-	SimpleCompute_Mul_FullMethodName = "/SimpleCompute/Mul"
-	SimpleCompute_Div_FullMethodName = "/SimpleCompute/Div"
+	SimpleCompute_Add_FullMethodName = "/simple.SimpleCompute/Add"
+	SimpleCompute_Sub_FullMethodName = "/simple.SimpleCompute/Sub"
+	SimpleCompute_Mul_FullMethodName = "/simple.SimpleCompute/Mul"
+	SimpleCompute_Div_FullMethodName = "/simple.SimpleCompute/Div"
 )
 
 // SimpleComputeClient is the client API for SimpleCompute service.
@@ -210,7 +210,7 @@ func _SimpleCompute_Div_Handler(srv interface{}, ctx context.Context, dec func(i
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SimpleCompute_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "SimpleCompute",
+	ServiceName: "simple.SimpleCompute",
 	HandlerType: (*SimpleComputeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

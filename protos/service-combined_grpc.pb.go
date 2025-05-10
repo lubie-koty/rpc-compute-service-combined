@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CombinedCompute_RootMeanSquare_FullMethodName        = "/CombinedCompute/RootMeanSquare"
-	CombinedCompute_GeometricMean_FullMethodName         = "/CombinedCompute/GeometricMean"
-	CombinedCompute_BodyMassIndex_FullMethodName         = "/CombinedCompute/BodyMassIndex"
-	CombinedCompute_PowerLevelDiff_FullMethodName        = "/CombinedCompute/PowerLevelDiff"
-	CombinedCompute_PercentageValueChange_FullMethodName = "/CombinedCompute/PercentageValueChange"
+	CombinedCompute_RootMeanSquare_FullMethodName        = "/protos.CombinedCompute/RootMeanSquare"
+	CombinedCompute_GeometricMean_FullMethodName         = "/protos.CombinedCompute/GeometricMean"
+	CombinedCompute_BodyMassIndex_FullMethodName         = "/protos.CombinedCompute/BodyMassIndex"
+	CombinedCompute_PowerLevelDiff_FullMethodName        = "/protos.CombinedCompute/PowerLevelDiff"
+	CombinedCompute_PercentageValueChange_FullMethodName = "/protos.CombinedCompute/PercentageValueChange"
 )
 
 // CombinedComputeClient is the client API for CombinedCompute service.
@@ -244,7 +244,7 @@ func _CombinedCompute_PercentageValueChange_Handler(srv interface{}, ctx context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CombinedCompute_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "CombinedCompute",
+	ServiceName: "protos.CombinedCompute",
 	HandlerType: (*CombinedComputeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

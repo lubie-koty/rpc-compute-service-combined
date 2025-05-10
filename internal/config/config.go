@@ -5,13 +5,11 @@ import (
 )
 
 type Config struct {
-	Host           string
-	Port           int
-	AppMode        string
-	GRPCClientHost string
-	GRPCClientPort int
-	HTTPClientHost string
-	HTTPClientPort int
+	Host              string
+	Port              int
+	AppMode           string
+	SimpleServiceURL  string
+	ComplexServiceURL string
 }
 
 var AppConfig Config
@@ -29,30 +27,20 @@ func InitConfig(envVars map[string]string) error {
 	if err != nil {
 		return err
 	}
-	gClientPort, err := util.ValidatePort(envVars["GRPC_CLIENT_PORT"])
+	simpleServiceURL, err := util.ValidateURL(envVars["SIMPLE_SERVICE_URL"])
 	if err != nil {
 		return err
 	}
-	gClientHost, err := util.ValidateHost(envVars["GRPC_CLIENT_HOST"])
-	if err != nil {
-		return err
-	}
-	hClientPort, err := util.ValidatePort(envVars["HTTP_CLIENT_PORT"])
-	if err != nil {
-		return err
-	}
-	hClientHost, err := util.ValidateHost(envVars["HTTP_CLIENT_HOST"])
+	complexServiceURL, err := util.ValidateURL(envVars["COMPLEX_SERVICE_URL"])
 	if err != nil {
 		return err
 	}
 	AppConfig = Config{
-		Host:           hostValue,
-		Port:           portValue,
-		AppMode:        appModeValue,
-		GRPCClientPort: gClientPort,
-		GRPCClientHost: gClientHost,
-		HTTPClientPort: hClientPort,
-		HTTPClientHost: hClientHost,
+		Host:              hostValue,
+		Port:              portValue,
+		AppMode:           appModeValue,
+		SimpleServiceURL:  simpleServiceURL,
+		ComplexServiceURL: complexServiceURL,
 	}
 	return nil
 }

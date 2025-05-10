@@ -1,6 +1,6 @@
 syntax = "proto3";
-
-option go_package = "github.com/lubie-koty/rpc-compute-service-combined/protos";
+package simple;
+option go_package = "github.com/lubie-koty/rpc-compute-service-combined/protos/simple";
 
 service SimpleCompute {
   rpc Add (OperationRequest) returns (OperationResponse) {}

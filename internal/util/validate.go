@@ -1,7 +1,9 @@
 package util
 
 import (
+	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/go-playground/validator/v10"
 )
@@ -30,6 +32,20 @@ func ValidateHost(hostValue string) (string, error) {
 		return "", err
 	}
 	return hostValue, nil
+}
+
+func ValidateURL(addressValue string) (string, error) {
+	splitAddress := strings.Split(addressValue, ":")
+	if len(splitAddress) != 2 {
+		return "", fmt.Errorf("error while parsing url: %s", addressValue)
+	}
+	if _, err := ValidateHost(splitAddress[0]); err != nil {
+		return "", err
+	}
+	if _, err := ValidatePort(splitAddress[1]); err != nil {
+		return "", err
+	}
+	return addressValue, nil
 }
 
 func ValidateAppMode(appModeValue string) (string, error) {

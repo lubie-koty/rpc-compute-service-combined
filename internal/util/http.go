@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 )
 
@@ -45,10 +46,10 @@ func GetResponseBody[T any](response *http.Response) (T, error) {
 	defer response.Body.Close()
 	var body T
 	if err := json.NewDecoder(response.Body).Decode(&body); err != nil {
-		return body, errors.Join(err, errors.New("Invalid response body"))
+		return body, errors.Join(err, errors.New("invalid response body"))
 	}
 	if err := Validate.Struct(body); err != nil {
-		return body, errors.Join(err, errors.New("Invalid response body"))
+		return body, errors.Join(err, errors.New("invalid response body"))
 	}
 	return body, nil
 }
@@ -58,7 +59,7 @@ func CreateRequest[T any](method string, url string, data T) (*http.Request, err
 	if err := json.NewEncoder(buff).Encode(data); err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequest(method, url, buff)
+	req, err := http.NewRequest(method, fmt.Sprintf("http://%s", url), buff)
 	if err != nil {
 		return nil, err
 	}

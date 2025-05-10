@@ -121,18 +121,18 @@ var File_protos_service_combined_proto protoreflect.FileDescriptor
 
 const file_protos_service_combined_proto_rawDesc = "" +
 	"\n" +
-	"\x1dprotos/service-combined.proto\"Z\n" +
+	"\x1dprotos/service-combined.proto\x12\x06protos\"Z\n" +
 	"\x10OperationRequest\x12!\n" +
 	"\ffirst_number\x18\x01 \x01(\x01R\vfirstNumber\x12#\n" +
 	"\rsecond_number\x18\x02 \x01(\x01R\fsecondNumber\"+\n" +
 	"\x11OperationResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\x01R\x06result2\xbd\x02\n" +
-	"\x0fCombinedCompute\x129\n" +
-	"\x0eRootMeanSquare\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00\x128\n" +
-	"\rGeometricMean\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00\x128\n" +
-	"\rBodyMassIndex\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00\x129\n" +
-	"\x0ePowerLevelDiff\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00\x12@\n" +
-	"\x15PercentageValueChange\x12\x11.OperationRequest\x1a\x12.OperationResponse\"\x00B:Z8github.com/lubie-koty/rpc-compute-service-combined/protosb\x06proto3"
+	"\x06result\x18\x01 \x01(\x01R\x06result2\x83\x03\n" +
+	"\x0fCombinedCompute\x12G\n" +
+	"\x0eRootMeanSquare\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00\x12F\n" +
+	"\rGeometricMean\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00\x12F\n" +
+	"\rBodyMassIndex\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00\x12G\n" +
+	"\x0ePowerLevelDiff\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00\x12N\n" +
+	"\x15PercentageValueChange\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00B;Z9github.com/lubie-koty/rpc-compute-service-combined/protosb\x06proto3"
 
 var (
 	file_protos_service_combined_proto_rawDescOnce sync.Once
@@ -148,20 +148,20 @@ func file_protos_service_combined_proto_rawDescGZIP() []byte {
 
 var file_protos_service_combined_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_protos_service_combined_proto_goTypes = []any{
-	(*OperationRequest)(nil),  // 0: OperationRequest
-	(*OperationResponse)(nil), // 1: OperationResponse
+	(*OperationRequest)(nil),  // 0: protos.OperationRequest
+	(*OperationResponse)(nil), // 1: protos.OperationResponse
 }
 var file_protos_service_combined_proto_depIdxs = []int32{
-	0, // 0: CombinedCompute.RootMeanSquare:input_type -> OperationRequest
-	0, // 1: CombinedCompute.GeometricMean:input_type -> OperationRequest
-	0, // 2: CombinedCompute.BodyMassIndex:input_type -> OperationRequest
-	0, // 3: CombinedCompute.PowerLevelDiff:input_type -> OperationRequest
-	0, // 4: CombinedCompute.PercentageValueChange:input_type -> OperationRequest
-	1, // 5: CombinedCompute.RootMeanSquare:output_type -> OperationResponse
-	1, // 6: CombinedCompute.GeometricMean:output_type -> OperationResponse
-	1, // 7: CombinedCompute.BodyMassIndex:output_type -> OperationResponse
-	1, // 8: CombinedCompute.PowerLevelDiff:output_type -> OperationResponse
-	1, // 9: CombinedCompute.PercentageValueChange:output_type -> OperationResponse
+	0, // 0: protos.CombinedCompute.RootMeanSquare:input_type -> protos.OperationRequest
+	0, // 1: protos.CombinedCompute.GeometricMean:input_type -> protos.OperationRequest
+	0, // 2: protos.CombinedCompute.BodyMassIndex:input_type -> protos.OperationRequest
+	0, // 3: protos.CombinedCompute.PowerLevelDiff:input_type -> protos.OperationRequest
+	0, // 4: protos.CombinedCompute.PercentageValueChange:input_type -> protos.OperationRequest
+	1, // 5: protos.CombinedCompute.RootMeanSquare:output_type -> protos.OperationResponse
+	1, // 6: protos.CombinedCompute.GeometricMean:output_type -> protos.OperationResponse
+	1, // 7: protos.CombinedCompute.BodyMassIndex:output_type -> protos.OperationResponse
+	1, // 8: protos.CombinedCompute.PowerLevelDiff:output_type -> protos.OperationResponse
+	1, // 9: protos.CombinedCompute.PercentageValueChange:output_type -> protos.OperationResponse
 	5, // [5:10] is the sub-list for method output_type
 	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

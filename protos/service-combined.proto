@@ -1,5 +1,5 @@
 syntax = "proto3";
-
+package protos;
 option go_package = "github.com/lubie-koty/rpc-compute-service-combined/protos";
 
 service CombinedCompute {
