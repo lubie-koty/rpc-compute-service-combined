@@ -10,9 +10,9 @@ import (
 	"syscall"
 
 	"github.com/joho/godotenv"
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/config"
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/core"
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/util"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/config"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/core"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/util"
 )
 
 func main() {

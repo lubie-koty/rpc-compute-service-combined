@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "github.com/lubie-koty/rpc-compute-service-combined/protos";
+
+service CombinedCompute {
+  rpc RootMeanSquare (OperationRequest) returns (OperationResponse) {}
+  rpc GeometricMean (OperationRequest) returns (OperationResponse) {}
+  rpc BodyMassIndex (OperationRequest) returns (OperationResponse) {}
+  rpc PowerLevelDiff (OperationRequest) returns (OperationResponse) {}
+  rpc PercentageValueChange (OperationRequest) returns (OperationResponse) {}
+}
+
+message OperationRequest {
+    double first_number = 1;
+    double second_number = 2;
+}
+
+message OperationResponse {
+    double result = 1;
+}

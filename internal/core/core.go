@@ -4,11 +4,11 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/base"
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/config"
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/core/types"
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/grpc"
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/http"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/base"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/config"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/core/types"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/grpc"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/http"
 )
 
 type App struct {

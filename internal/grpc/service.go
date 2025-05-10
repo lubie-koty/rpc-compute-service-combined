@@ -3,8 +3,8 @@ package grpc
 import (
 	"context"
 
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/core/types"
-	pb "github.com/lubie-koty/rpc-compute-service-complex/protos"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/core/types"
+	pb "github.com/lubie-koty/rpc-compute-service-combined/protos"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

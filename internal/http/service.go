@@ -3,8 +3,8 @@ package http
 import (
 	"net/http"
 
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/core/types"
-	"github.com/lubie-koty/rpc-compute-service-complex/internal/util"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/core/types"
+	"github.com/lubie-koty/rpc-compute-service-combined/internal/util"
 )
 
 type HTTPService struct {
