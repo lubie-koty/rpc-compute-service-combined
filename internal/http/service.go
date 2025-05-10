@@ -1,6 +1,7 @@
 package http
 
 import (
+	"log/slog"
 	"net/http"
 
 	"github.com/lubie-koty/rpc-compute-service-combined/internal/core/types"
@@ -9,12 +10,23 @@ import (
 
 type HTTPService struct {
 	service types.MathService
+	logger  *slog.Logger
 }
 
-func NewHTTPService(service types.MathService) *HTTPService {
+func NewHTTPService(service types.MathService, logger *slog.Logger) *HTTPService {
 	return &HTTPService{
 		service: service,
+		logger:  logger,
 	}
+}
+
+type UnaryRequest struct {
+	Number float64 `json:"number" validate:"required"`
+}
+
+type BinaryRequest struct {
+	FirstNumber  float64 `json:"first_number" validate:"required"`
+	SecondNumber float64 `json:"second_number" validate:"required"`
 }
 
 type OperationRequest struct {
@@ -32,7 +44,12 @@ func (s *HTTPService) RootMeanSquare(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	result := s.service.RootMeanSquare(body.FirstNumber, body.SecondNumber)
+	result, err := s.service.RootMeanSquare(body.FirstNumber, body.SecondNumber)
+	if err != nil {
+		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
+		s.logger.Error(err.Error())
+		return
+	}
 	util.WriteResponse(w, OperationResponse{Result: result})
 }
 
@@ -42,7 +59,12 @@ func (s *HTTPService) GeometricMean(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	result := s.service.GeometricMean(body.FirstNumber, body.SecondNumber)
+	result, err := s.service.GeometricMean(body.FirstNumber, body.SecondNumber)
+	if err != nil {
+		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
+		s.logger.Error(err.Error())
+		return
+	}
 	util.WriteResponse(w, OperationResponse{Result: result})
 }
 
@@ -52,7 +74,12 @@ func (s *HTTPService) BodyMassIndex(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	result := s.service.BodyMassIndex(body.FirstNumber, body.SecondNumber)
+	result, err := s.service.BodyMassIndex(body.FirstNumber, body.SecondNumber)
+	if err != nil {
+		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
+		s.logger.Error(err.Error())
+		return
+	}
 	util.WriteResponse(w, OperationResponse{Result: result})
 }
 
@@ -62,7 +89,12 @@ func (s *HTTPService) PowerLevelDiff(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	result := s.service.PowerLevelDiff(body.FirstNumber, body.SecondNumber)
+	result, err := s.service.PowerLevelDiff(body.FirstNumber, body.SecondNumber)
+	if err != nil {
+		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
+		s.logger.Error(err.Error())
+		return
+	}
 	util.WriteResponse(w, OperationResponse{Result: result})
 }
 
@@ -72,6 +104,11 @@ func (s *HTTPService) PercentageValueChange(w http.ResponseWriter, r *http.Reque
 	if err != nil {
 		return
 	}
-	result := s.service.PercentageValueChange(body.FirstNumber, body.SecondNumber)
+	result, err := s.service.PercentageValueChange(body.FirstNumber, body.SecondNumber)
+	if err != nil {
+		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
+		s.logger.Error(err.Error())
+		return
+	}
 	util.WriteResponse(w, OperationResponse{Result: result})
 }

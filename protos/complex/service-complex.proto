@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "github.com/lubie-koty/rpc-compute-service-combined/protos";
+
+service ComplexCompute {
+  rpc Sqrt (UnaryRequest) returns (OperationResponse) {}
+  rpc Abs (UnaryRequest) returns (OperationResponse) {}
+  rpc Power (BinaryRequest) returns (OperationResponse) {}
+  rpc Log (BinaryRequest) returns (OperationResponse) {}
+  rpc Round (BinaryRequest) returns (OperationResponse) {}
+}
+
+message UnaryRequest {
+    double number = 1;
+}
+
+message BinaryRequest {
+    double first_number = 1;
+    double second_number = 2;
+}
+
+message OperationResponse {
+    double result = 1;
+}

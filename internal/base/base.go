@@ -14,33 +14,90 @@ func NewCombinedMathService(simpleService types.SimpleServiceClient, complexServ
 	}
 }
 
-func (s *CombinedMathService) RootMeanSquare(firstValue float64, secondValue float64) float64 {
-	xPower := s.complexService.Power(firstValue, 2)
-	yPower := s.complexService.Power(secondValue, 2)
-	sum := s.simpleService.Add(xPower, yPower)
-	avg := s.simpleService.Div(sum, 2)
-	return s.complexService.Sqrt(avg)
+func (s *CombinedMathService) RootMeanSquare(firstValue float64, secondValue float64) (float64, error) {
+	xPower, err := s.complexService.Power(firstValue, 2)
+	if err != nil {
+		return 0, err
+	}
+	yPower, err := s.complexService.Power(secondValue, 2)
+	if err != nil {
+		return 0, err
+	}
+	sum, err := s.simpleService.Add(xPower, yPower)
+	if err != nil {
+		return 0, err
+	}
+	avg, err := s.simpleService.Div(sum, 2)
+	if err != nil {
+		return 0, err
+	}
+	result, err := s.complexService.Sqrt(avg)
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }
 
-func (s *CombinedMathService) GeometricMean(firstValue float64, secondValue float64) float64 {
-	product := s.simpleService.Mul(firstValue, secondValue)
-	return s.complexService.Sqrt(product)
+func (s *CombinedMathService) GeometricMean(firstValue float64, secondValue float64) (float64, error) {
+	product, err := s.simpleService.Mul(firstValue, secondValue)
+	if err != nil {
+		return 0, err
+	}
+	result, err := s.complexService.Sqrt(product)
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }
 
-func (s *CombinedMathService) BodyMassIndex(weight float64, height float64) float64 {
-	heightPower := s.complexService.Power(height, 2)
-	return s.simpleService.Div(weight, heightPower)
+func (s *CombinedMathService) BodyMassIndex(weight float64, height float64) (float64, error) {
+	heightPower, err := s.complexService.Power(height, 2)
+	if err != nil {
+		return 0, err
+	}
+	result, err := s.simpleService.Div(weight, heightPower)
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }
 
-func (s *CombinedMathService) PowerLevelDiff(firstValue float64, secondValue float64) float64 {
-	ratio := s.simpleService.Div(firstValue, secondValue)
-	logValue := s.complexService.Log(ratio, 10)
-	return s.simpleService.Mul(10, logValue)
+func (s *CombinedMathService) PowerLevelDiff(firstValue float64, secondValue float64) (float64, error) {
+	ratio, err := s.simpleService.Div(firstValue, secondValue)
+	if err != nil {
+		return 0, err
+	}
+	logValue, err := s.complexService.Log(ratio, 10)
+	if err != nil {
+		return 0, err
+	}
+	result, err := s.simpleService.Mul(10, logValue)
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }
 
-func (s *CombinedMathService) PercentageValueChange(firstValue float64, secondValue float64) float64 {
-	delta := s.simpleService.Sub(secondValue, firstValue)
-	div := s.simpleService.Div(delta, s.complexService.Abs(firstValue))
-	percentage := s.simpleService.Mul(div, 100)
-	return s.complexService.Round(percentage, 2)
+func (s *CombinedMathService) PercentageValueChange(firstValue float64, secondValue float64) (float64, error) {
+	delta, err := s.simpleService.Sub(secondValue, firstValue)
+	if err != nil {
+		return 0, err
+	}
+	abs, err := s.complexService.Abs(firstValue)
+	if err != nil {
+		return 0, err
+	}
+	div, err := s.simpleService.Div(delta, abs)
+	if err != nil {
+		return 0, err
+	}
+	percentage, err := s.simpleService.Mul(div, 100)
+	if err != nil {
+		return 0, err
+	}
+	result, err := s.complexService.Round(percentage, 2)
+	if err != nil {
+		return 0, err
+	}
+	return result, nil
 }

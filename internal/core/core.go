@@ -18,12 +18,19 @@ type App struct {
 func NewApp(ctx *context.Context, logger *slog.Logger, address string) *App {
 	var server types.Server
 	appMode := config.AppConfig.AppMode
-	baseService := base.NewCombinedMathService()
 	switch appMode {
 	case "grpc":
-		server = grpc.NewGRPCServer(ctx, logger, grpc.NewGRPCService(baseService), address)
+		baseService := base.NewCombinedMathService(
+			grpc.NewGRPCSimpleServiceClient(*ctx, logger, address),
+			grpc.NewGRPCComplexServiceClient(*ctx, logger, address),
+		)
+		server = grpc.NewGRPCServer(ctx, logger, grpc.NewGRPCService(baseService, logger), address)
 	case "rest":
-		server = http.NewHTTPServer(ctx, logger, http.NewHTTPService(baseService), address)
+		baseService := base.NewCombinedMathService(
+			http.NewHTTPSimpleServiceClient(ctx, logger, address),
+			http.NewHTTPComplexServiceClient(ctx, logger, address),
+		)
+		server = http.NewHTTPServer(ctx, logger, http.NewHTTPService(baseService, logger), address)
 	default:
 		panic("unsupported app mode")
 	}
