@@ -50,32 +50,32 @@ func NewGRPCComplexServiceClient(ctx context.Context, logger *slog.Logger, addre
 
 }
 
-func (s *GRPCSimpleServiceClient) Add(a, b float64) (float64, error) {
-	result, err := s.client.Add(s.ctx, &pbSimple.OperationRequest{FirstNumber: a, SecondNumber: b})
+func (s *GRPCSimpleServiceClient) Add(numbers []float64) (float64, error) {
+	result, err := s.client.Add(s.ctx, &pbSimple.OperationRequest{Numbers: numbers})
 	if err != nil {
 		return 0, err
 	}
 	return result.Result, nil
 }
 
-func (s *GRPCSimpleServiceClient) Sub(a, b float64) (float64, error) {
-	result, err := s.client.Sub(s.ctx, &pbSimple.OperationRequest{FirstNumber: a, SecondNumber: b})
+func (s *GRPCSimpleServiceClient) Sub(numbers []float64) (float64, error) {
+	result, err := s.client.Sub(s.ctx, &pbSimple.OperationRequest{Numbers: numbers})
 	if err != nil {
 		return 0, err
 	}
 	return result.Result, nil
 }
 
-func (s *GRPCSimpleServiceClient) Mul(a, b float64) (float64, error) {
-	result, err := s.client.Mul(s.ctx, &pbSimple.OperationRequest{FirstNumber: a, SecondNumber: b})
+func (s *GRPCSimpleServiceClient) Mul(numbers []float64) (float64, error) {
+	result, err := s.client.Mul(s.ctx, &pbSimple.OperationRequest{Numbers: numbers})
 	if err != nil {
 		return 0, err
 	}
 	return result.Result, nil
 }
 
-func (s *GRPCSimpleServiceClient) Div(a, b float64) (float64, error) {
-	result, err := s.client.Div(s.ctx, &pbSimple.OperationRequest{FirstNumber: a, SecondNumber: b})
+func (s *GRPCSimpleServiceClient) Div(numbers []float64) (float64, error) {
+	result, err := s.client.Div(s.ctx, &pbSimple.OperationRequest{Numbers: numbers})
 	if err != nil {
 		return 0, err
 	}

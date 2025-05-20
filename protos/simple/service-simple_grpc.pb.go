@@ -4,7 +4,7 @@
 // - protoc             v6.30.1
 // source: protos/simple/service-simple.proto
 
-package simple
+package protos
 
 import (
 	context "context"

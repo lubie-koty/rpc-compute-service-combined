@@ -23,8 +23,8 @@ func NewGRPCService(service types.MathService, logger *slog.Logger) *GRPCService
 	}
 }
 
-func (s *GRPCService) RootMeanSquare(ctx context.Context, req *pb.OperationRequest) (*pb.OperationResponse, error) {
-	result, err := s.service.RootMeanSquare(req.GetFirstNumber(), req.GetSecondNumber())
+func (s *GRPCService) RootMeanSquare(ctx context.Context, req *pb.RepeatedOperationRequest) (*pb.OperationResponse, error) {
+	result, err := s.service.RootMeanSquare(req.GetNumbers())
 	if err != nil {
 		s.logger.Error(err.Error())
 		return nil, status.Error(codes.Internal, err.Error())
@@ -32,8 +32,8 @@ func (s *GRPCService) RootMeanSquare(ctx context.Context, req *pb.OperationReque
 	return &pb.OperationResponse{Result: result}, nil
 }
 
-func (s *GRPCService) GeometricMean(ctx context.Context, req *pb.OperationRequest) (*pb.OperationResponse, error) {
-	result, err := s.service.GeometricMean(req.GetFirstNumber(), req.GetSecondNumber())
+func (s *GRPCService) GeometricMean(ctx context.Context, req *pb.RepeatedOperationRequest) (*pb.OperationResponse, error) {
+	result, err := s.service.GeometricMean(req.GetNumbers())
 	if err != nil {
 		s.logger.Error(err.Error())
 		return nil, status.Error(codes.Internal, err.Error())

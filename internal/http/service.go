@@ -29,6 +29,10 @@ type BinaryRequest struct {
 	SecondNumber float64 `json:"second_number" validate:"required"`
 }
 
+type RepeatedOperationRequest struct {
+	Numbers []float64 `json:"numbers" validate:"required"`
+}
+
 type OperationRequest struct {
 	FirstNumber  float64 `json:"first_number" validate:"required"`
 	SecondNumber float64 `json:"second_number" validate:"required"`
@@ -40,11 +44,11 @@ type OperationResponse struct {
 
 func (s *HTTPService) RootMeanSquare(w http.ResponseWriter, r *http.Request) {
 	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[OperationRequest](w, r)
+	body, err := util.GetRequestBody[RepeatedOperationRequest](w, r)
 	if err != nil {
 		return
 	}
-	result, err := s.service.RootMeanSquare(body.FirstNumber, body.SecondNumber)
+	result, err := s.service.RootMeanSquare(body.Numbers)
 	if err != nil {
 		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
 		s.logger.Error(err.Error())
@@ -55,11 +59,11 @@ func (s *HTTPService) RootMeanSquare(w http.ResponseWriter, r *http.Request) {
 
 func (s *HTTPService) GeometricMean(w http.ResponseWriter, r *http.Request) {
 	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[OperationRequest](w, r)
+	body, err := util.GetRequestBody[RepeatedOperationRequest](w, r)
 	if err != nil {
 		return
 	}
-	result, err := s.service.GeometricMean(body.FirstNumber, body.SecondNumber)
+	result, err := s.service.GeometricMean(body.Numbers)
 	if err != nil {
 		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
 		s.logger.Error(err.Error())

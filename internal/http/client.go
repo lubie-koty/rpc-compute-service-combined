@@ -41,11 +41,11 @@ func NewHTTPComplexServiceClient(ctx *context.Context, logger *slog.Logger, addr
 	}
 }
 
-func (s *HTTPSimpleServiceClient) Add(a, b float64) (float64, error) {
-	req, err := util.CreateRequest[OperationRequest](
+func (s *HTTPSimpleServiceClient) Add(numbers []float64) (float64, error) {
+	req, err := util.CreateRequest[RepeatedOperationRequest](
 		"POST",
 		fmt.Sprintf("%s/add", s.address),
-		OperationRequest{FirstNumber: a, SecondNumber: b},
+		RepeatedOperationRequest{Numbers: numbers},
 	)
 	if err != nil {
 		return 0, err
@@ -61,11 +61,11 @@ func (s *HTTPSimpleServiceClient) Add(a, b float64) (float64, error) {
 	return data.Result, nil
 }
 
-func (s *HTTPSimpleServiceClient) Sub(a, b float64) (float64, error) {
-	req, err := util.CreateRequest[OperationRequest](
+func (s *HTTPSimpleServiceClient) Sub(numbers []float64) (float64, error) {
+	req, err := util.CreateRequest[RepeatedOperationRequest](
 		"POST",
 		fmt.Sprintf("%s/sub", s.address),
-		OperationRequest{FirstNumber: a, SecondNumber: b},
+		RepeatedOperationRequest{Numbers: numbers},
 	)
 	if err != nil {
 		return 0, err
@@ -81,11 +81,11 @@ func (s *HTTPSimpleServiceClient) Sub(a, b float64) (float64, error) {
 	return data.Result, nil
 }
 
-func (s *HTTPSimpleServiceClient) Mul(a, b float64) (float64, error) {
-	req, err := util.CreateRequest[OperationRequest](
+func (s *HTTPSimpleServiceClient) Mul(numbers []float64) (float64, error) {
+	req, err := util.CreateRequest[RepeatedOperationRequest](
 		"POST",
 		fmt.Sprintf("%s/mul", s.address),
-		OperationRequest{FirstNumber: a, SecondNumber: b},
+		RepeatedOperationRequest{Numbers: numbers},
 	)
 	if err != nil {
 		return 0, err
@@ -101,11 +101,11 @@ func (s *HTTPSimpleServiceClient) Mul(a, b float64) (float64, error) {
 	return data.Result, nil
 }
 
-func (s *HTTPSimpleServiceClient) Div(a, b float64) (float64, error) {
-	req, err := util.CreateRequest[OperationRequest](
+func (s *HTTPSimpleServiceClient) Div(numbers []float64) (float64, error) {
+	req, err := util.CreateRequest[RepeatedOperationRequest](
 		"POST",
 		fmt.Sprintf("%s/div", s.address),
-		OperationRequest{FirstNumber: a, SecondNumber: b},
+		RepeatedOperationRequest{Numbers: numbers},
 	)
 	if err != nil {
 		return 0, err

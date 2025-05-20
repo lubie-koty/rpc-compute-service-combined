@@ -3,11 +3,15 @@ package protos;
 option go_package = "github.com/lubie-koty/rpc-compute-service-combined/protos";
 
 service CombinedCompute {
-  rpc RootMeanSquare (OperationRequest) returns (OperationResponse) {}
-  rpc GeometricMean (OperationRequest) returns (OperationResponse) {}
+  rpc RootMeanSquare (RepeatedOperationRequest) returns (OperationResponse) {}
+  rpc GeometricMean (RepeatedOperationRequest) returns (OperationResponse) {}
   rpc BodyMassIndex (OperationRequest) returns (OperationResponse) {}
   rpc PowerLevelDiff (OperationRequest) returns (OperationResponse) {}
   rpc PercentageValueChange (OperationRequest) returns (OperationResponse) {}
+}
+
+message RepeatedOperationRequest {
+    repeated double numbers = 1;
 }
 
 message OperationRequest {

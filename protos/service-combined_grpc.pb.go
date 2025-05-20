@@ -30,8 +30,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CombinedComputeClient interface {
-	RootMeanSquare(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
-	GeometricMean(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
+	RootMeanSquare(ctx context.Context, in *RepeatedOperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
+	GeometricMean(ctx context.Context, in *RepeatedOperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
 	BodyMassIndex(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
 	PowerLevelDiff(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
 	PercentageValueChange(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
@@ -45,7 +45,7 @@ func NewCombinedComputeClient(cc grpc.ClientConnInterface) CombinedComputeClient
 	return &combinedComputeClient{cc}
 }
 
-func (c *combinedComputeClient) RootMeanSquare(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
+func (c *combinedComputeClient) RootMeanSquare(ctx context.Context, in *RepeatedOperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(OperationResponse)
 	err := c.cc.Invoke(ctx, CombinedCompute_RootMeanSquare_FullMethodName, in, out, cOpts...)
@@ -55,7 +55,7 @@ func (c *combinedComputeClient) RootMeanSquare(ctx context.Context, in *Operatio
 	return out, nil
 }
 
-func (c *combinedComputeClient) GeometricMean(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
+func (c *combinedComputeClient) GeometricMean(ctx context.Context, in *RepeatedOperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(OperationResponse)
 	err := c.cc.Invoke(ctx, CombinedCompute_GeometricMean_FullMethodName, in, out, cOpts...)
@@ -99,8 +99,8 @@ func (c *combinedComputeClient) PercentageValueChange(ctx context.Context, in *O
 // All implementations must embed UnimplementedCombinedComputeServer
 // for forward compatibility.
 type CombinedComputeServer interface {
-	RootMeanSquare(context.Context, *OperationRequest) (*OperationResponse, error)
-	GeometricMean(context.Context, *OperationRequest) (*OperationResponse, error)
+	RootMeanSquare(context.Context, *RepeatedOperationRequest) (*OperationResponse, error)
+	GeometricMean(context.Context, *RepeatedOperationRequest) (*OperationResponse, error)
 	BodyMassIndex(context.Context, *OperationRequest) (*OperationResponse, error)
 	PowerLevelDiff(context.Context, *OperationRequest) (*OperationResponse, error)
 	PercentageValueChange(context.Context, *OperationRequest) (*OperationResponse, error)
@@ -114,10 +114,10 @@ type CombinedComputeServer interface {
 // pointer dereference when methods are called.
 type UnimplementedCombinedComputeServer struct{}
 
-func (UnimplementedCombinedComputeServer) RootMeanSquare(context.Context, *OperationRequest) (*OperationResponse, error) {
+func (UnimplementedCombinedComputeServer) RootMeanSquare(context.Context, *RepeatedOperationRequest) (*OperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RootMeanSquare not implemented")
 }
-func (UnimplementedCombinedComputeServer) GeometricMean(context.Context, *OperationRequest) (*OperationResponse, error) {
+func (UnimplementedCombinedComputeServer) GeometricMean(context.Context, *RepeatedOperationRequest) (*OperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GeometricMean not implemented")
 }
 func (UnimplementedCombinedComputeServer) BodyMassIndex(context.Context, *OperationRequest) (*OperationResponse, error) {
@@ -151,7 +151,7 @@ func RegisterCombinedComputeServer(s grpc.ServiceRegistrar, srv CombinedComputeS
 }
 
 func _CombinedCompute_RootMeanSquare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OperationRequest)
+	in := new(RepeatedOperationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -163,13 +163,13 @@ func _CombinedCompute_RootMeanSquare_Handler(srv interface{}, ctx context.Contex
 		FullMethod: CombinedCompute_RootMeanSquare_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CombinedComputeServer).RootMeanSquare(ctx, req.(*OperationRequest))
+		return srv.(CombinedComputeServer).RootMeanSquare(ctx, req.(*RepeatedOperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CombinedCompute_GeometricMean_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OperationRequest)
+	in := new(RepeatedOperationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -181,7 +181,7 @@ func _CombinedCompute_GeometricMean_Handler(srv interface{}, ctx context.Context
 		FullMethod: CombinedCompute_GeometricMean_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CombinedComputeServer).GeometricMean(ctx, req.(*OperationRequest))
+		return srv.(CombinedComputeServer).GeometricMean(ctx, req.(*RepeatedOperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

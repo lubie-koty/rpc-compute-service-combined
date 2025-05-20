@@ -5,18 +5,18 @@ type Server interface {
 }
 
 type MathService interface {
-	RootMeanSquare(firstValue float64, secondValue float64) (float64, error)
-	GeometricMean(firstValue float64, secondValue float64) (float64, error)
+	RootMeanSquare(numbers []float64) (float64, error)
+	GeometricMean(numbers []float64) (float64, error)
 	BodyMassIndex(weight float64, height float64) (float64, error)
 	PowerLevelDiff(firstValue float64, secondValue float64) (float64, error)
 	PercentageValueChange(firstValue float64, secondValue float64) (float64, error)
 }
 
 type SimpleServiceClient interface {
-	Add(a, b float64) (float64, error)
-	Sub(a, b float64) (float64, error)
-	Mul(a, b float64) (float64, error)
-	Div(a, b float64) (float64, error)
+	Add(numbers []float64) (float64, error)
+	Sub(numbers []float64) (float64, error)
+	Mul(numbers []float64) (float64, error)
+	Div(numbers []float64) (float64, error)
 }
 
 type ComplexServiceClient interface {
