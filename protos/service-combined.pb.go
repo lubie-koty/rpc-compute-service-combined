@@ -172,11 +172,11 @@ const file_protos_service_combined_proto_rawDesc = "" +
 	"\ffirst_number\x18\x01 \x01(\x01R\vfirstNumber\x12#\n" +
 	"\rsecond_number\x18\x02 \x01(\x01R\fsecondNumber\"+\n" +
 	"\x11OperationResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\x01R\x06result2\x93\x03\n" +
-	"\x0fCombinedCompute\x12O\n" +
-	"\x0eRootMeanSquare\x12 .protos.RepeatedOperationRequest\x1a\x19.protos.OperationResponse\"\x00\x12N\n" +
-	"\rGeometricMean\x12 .protos.RepeatedOperationRequest\x1a\x19.protos.OperationResponse\"\x00\x12F\n" +
-	"\rBodyMassIndex\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00\x12G\n" +
+	"\x06result\x18\x01 \x01(\x01R\x06result2\x9b\x03\n" +
+	"\x0fCombinedCompute\x12Q\n" +
+	"\x0eRootMeanSquare\x12 .protos.RepeatedOperationRequest\x1a\x19.protos.OperationResponse\"\x00(\x01\x12P\n" +
+	"\rGeometricMean\x12 .protos.RepeatedOperationRequest\x1a\x19.protos.OperationResponse\"\x000\x01\x12J\n" +
+	"\rBodyMassIndex\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00(\x010\x01\x12G\n" +
 	"\x0ePowerLevelDiff\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00\x12N\n" +
 	"\x15PercentageValueChange\x12\x18.protos.OperationRequest\x1a\x19.protos.OperationResponse\"\x00B;Z9github.com/lubie-koty/rpc-compute-service-combined/protosb\x06proto3"
 

@@ -4,6 +4,7 @@ import (
 	"log/slog"
 	"net/http"
 
+	"github.com/gorilla/websocket"
 	"github.com/lubie-koty/rpc-compute-service-combined/internal/core/types"
 	"github.com/lubie-koty/rpc-compute-service-combined/internal/util"
 )
@@ -18,6 +19,10 @@ func NewHTTPService(service types.MathService, logger *slog.Logger) *HTTPService
 		service: service,
 		logger:  logger,
 	}
+}
+
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool { return true },
 }
 
 type UnaryRequest struct {
@@ -43,48 +48,93 @@ type OperationResponse struct {
 }
 
 func (s *HTTPService) RootMeanSquare(w http.ResponseWriter, r *http.Request) {
-	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[RepeatedOperationRequest](w, r)
+	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		return
-	}
-	result, err := s.service.RootMeanSquare(body.Numbers)
-	if err != nil {
-		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
+		http.Error(w, "an error occurred while upgrading connection", http.StatusInternalServerError)
 		s.logger.Error(err.Error())
 		return
 	}
-	util.WriteResponse(w, OperationResponse{Result: result})
+	defer conn.Close()
+
+	body, err := util.GetWebsocketResponse[RepeatedOperationRequest](conn)
+	if err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
+
+	result, err := s.service.RootMeanSquare(body.Numbers)
+	if err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
+
+	if err := util.WriteWebsocketResponse(conn, OperationResponse{Result: result}); err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
 }
 
 func (s *HTTPService) GeometricMean(w http.ResponseWriter, r *http.Request) {
-	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[RepeatedOperationRequest](w, r)
+	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		return
-	}
-	result, err := s.service.GeometricMean(body.Numbers)
-	if err != nil {
-		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
+		http.Error(w, "an error occurred while upgrading connection", http.StatusInternalServerError)
 		s.logger.Error(err.Error())
 		return
 	}
-	util.WriteResponse(w, OperationResponse{Result: result})
+	defer conn.Close()
+
+	body, err := util.GetWebsocketResponse[RepeatedOperationRequest](conn)
+	if err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
+
+	result, err := s.service.GeometricMean(body.Numbers)
+	if err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
+
+	if err := util.WriteWebsocketResponse(conn, OperationResponse{Result: result}); err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
 }
 
 func (s *HTTPService) BodyMassIndex(w http.ResponseWriter, r *http.Request) {
-	util.ValidateRequest(w, r)
-	body, err := util.GetRequestBody[OperationRequest](w, r)
+	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		return
-	}
-	result, err := s.service.BodyMassIndex(body.FirstNumber, body.SecondNumber)
-	if err != nil {
-		http.Error(w, "an error occurred while computing result", http.StatusInternalServerError)
+		http.Error(w, "an error occurred while upgrading connection", http.StatusInternalServerError)
 		s.logger.Error(err.Error())
 		return
 	}
-	util.WriteResponse(w, OperationResponse{Result: result})
+	defer conn.Close()
+
+	body, err := util.GetWebsocketResponse[OperationRequest](conn)
+	if err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
+
+	result, err := s.service.BodyMassIndex(body.FirstNumber, body.SecondNumber)
+	if err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
+
+	if err := util.WriteWebsocketResponse(conn, OperationResponse{Result: result}); err != nil {
+		util.WriteWebsocketErrorResponse(conn, err)
+		s.logger.Error(err.Error())
+		return
+	}
 }
 
 func (s *HTTPService) PowerLevelDiff(w http.ResponseWriter, r *http.Request) {
