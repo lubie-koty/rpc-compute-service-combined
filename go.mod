@@ -5,7 +5,6 @@ go 1.24.0
 require (
 	github.com/go-playground/validator/v10 v10.26.0
 	github.com/gorilla/websocket v1.5.3
-	github.com/joho/godotenv v1.5.1
 	golang.org/x/sync v0.13.0
 	google.golang.org/grpc v1.72.0
 	google.golang.org/protobuf v1.36.6
