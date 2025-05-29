@@ -26,10 +26,12 @@ func NewGRPCService(service types.MathService, logger *slog.Logger) *GRPCService
 }
 
 func (s *GRPCService) RootMeanSquare(stream grpc.ClientStreamingServer[pb.RepeatedOperationRequest, pb.OperationResponse]) error {
+	var lastRequest *pb.RepeatedOperationRequest
+
 	for {
 		request, err := stream.Recv()
 		if err == io.EOF {
-			result, err := s.service.RootMeanSquare(request.GetNumbers())
+			result, err := s.service.RootMeanSquare(lastRequest.GetNumbers())
 			if err != nil {
 				s.logger.Error(err.Error())
 				return status.Error(codes.Internal, err.Error())
@@ -40,6 +42,7 @@ func (s *GRPCService) RootMeanSquare(stream grpc.ClientStreamingServer[pb.Repeat
 			s.logger.Error(err.Error())
 			return status.Error(codes.Internal, err.Error())
 		}
+		lastRequest = request
 	}
 }
 

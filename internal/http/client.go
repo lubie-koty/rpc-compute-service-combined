@@ -42,7 +42,7 @@ func NewHTTPComplexServiceClient(ctx *context.Context, logger *slog.Logger, addr
 }
 
 func (s *HTTPSimpleServiceClient) Add(numbers []float64) (float64, error) {
-	req, err := util.CreateRequest[RepeatedOperationRequest](
+	req, err := util.CreateRequest(
 		"POST",
 		fmt.Sprintf("%s/add", s.address),
 		RepeatedOperationRequest{Numbers: numbers},
@@ -62,7 +62,7 @@ func (s *HTTPSimpleServiceClient) Add(numbers []float64) (float64, error) {
 }
 
 func (s *HTTPSimpleServiceClient) Sub(numbers []float64) (float64, error) {
-	req, err := util.CreateRequest[RepeatedOperationRequest](
+	req, err := util.CreateRequest(
 		"POST",
 		fmt.Sprintf("%s/sub", s.address),
 		RepeatedOperationRequest{Numbers: numbers},
@@ -82,7 +82,7 @@ func (s *HTTPSimpleServiceClient) Sub(numbers []float64) (float64, error) {
 }
 
 func (s *HTTPSimpleServiceClient) Mul(numbers []float64) (float64, error) {
-	req, err := util.CreateRequest[RepeatedOperationRequest](
+	req, err := util.CreateRequest(
 		"POST",
 		fmt.Sprintf("%s/mul", s.address),
 		RepeatedOperationRequest{Numbers: numbers},
@@ -102,7 +102,7 @@ func (s *HTTPSimpleServiceClient) Mul(numbers []float64) (float64, error) {
 }
 
 func (s *HTTPSimpleServiceClient) Div(numbers []float64) (float64, error) {
-	req, err := util.CreateRequest[RepeatedOperationRequest](
+	req, err := util.CreateRequest(
 		"POST",
 		fmt.Sprintf("%s/div", s.address),
 		RepeatedOperationRequest{Numbers: numbers},
@@ -122,7 +122,7 @@ func (s *HTTPSimpleServiceClient) Div(numbers []float64) (float64, error) {
 }
 
 func (c *HTTPComplexServiceClient) Sqrt(num float64) (float64, error) {
-	req, err := util.CreateRequest[UnaryRequest](
+	req, err := util.CreateRequest(
 		"POST",
 		fmt.Sprintf("%s/sqrt", c.address),
 		UnaryRequest{Number: num},
@@ -142,7 +142,7 @@ func (c *HTTPComplexServiceClient) Sqrt(num float64) (float64, error) {
 }
 
 func (c *HTTPComplexServiceClient) Abs(num float64) (float64, error) {
-	req, err := util.CreateRequest[UnaryRequest](
+	req, err := util.CreateRequest(
 		"POST",
 		fmt.Sprintf("%s/abs", c.address),
 		UnaryRequest{Number: num},
@@ -163,7 +163,7 @@ func (c *HTTPComplexServiceClient) Abs(num float64) (float64, error) {
 }
 
 func (c *HTTPComplexServiceClient) Power(base float64, exponent float64) (float64, error) {
-	req, err := util.CreateRequest[BinaryRequest](
+	req, err := util.CreateRequest(
 		"POST",
 		fmt.Sprintf("%s/power", c.address),
 		BinaryRequest{FirstNumber: base, SecondNumber: exponent},
@@ -183,9 +183,9 @@ func (c *HTTPComplexServiceClient) Power(base float64, exponent float64) (float6
 }
 
 func (c *HTTPComplexServiceClient) Log(num float64, base float64) (float64, error) {
-	req, err := util.CreateRequest[BinaryRequest](
+	req, err := util.CreateRequest(
 		"POST",
-		fmt.Sprintf("%s/power", c.address),
+		fmt.Sprintf("%s/log", c.address),
 		BinaryRequest{FirstNumber: num, SecondNumber: base},
 	)
 	if err != nil {
@@ -203,9 +203,9 @@ func (c *HTTPComplexServiceClient) Log(num float64, base float64) (float64, erro
 }
 
 func (c *HTTPComplexServiceClient) Round(num float64, precision float64) (float64, error) {
-	req, err := util.CreateRequest[BinaryRequest](
+	req, err := util.CreateRequest(
 		"POST",
-		fmt.Sprintf("%s/power", c.address),
+		fmt.Sprintf("%s/round", c.address),
 		BinaryRequest{FirstNumber: num, SecondNumber: precision},
 	)
 	if err != nil {

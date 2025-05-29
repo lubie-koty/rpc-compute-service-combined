@@ -26,11 +26,11 @@ func NewHTTPServer(ctx *context.Context, logger *slog.Logger, httpService *HTTPS
 
 func NewHTTPHandler(httpService *HTTPService) http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("POST /root-mean-square", httpService.RootMeanSquare)
-	mux.HandleFunc("POST /geometric-mean", httpService.GeometricMean)
-	mux.HandleFunc("POST /body-mass-index", httpService.BodyMassIndex)
-	mux.HandleFunc("POST /power-level-diff", httpService.PowerLevelDiff)
-	mux.HandleFunc("POST /percentage-value-change", httpService.PercentageValueChange)
+	mux.HandleFunc("GET /rms", httpService.RootMeanSquare)
+	mux.HandleFunc("GET /gm", httpService.GeometricMean)
+	mux.HandleFunc("GET /bmi", httpService.BodyMassIndex)
+	mux.HandleFunc("POST /pld", httpService.PowerLevelDiff)
+	mux.HandleFunc("POST /pvc", httpService.PercentageValueChange)
 	return mux
 }
 
